@@ -1,3 +1,6 @@
+// Register File
+// 32 general-purpose 32-bit registers with 2 read ports and 1 write port.
+// Register x0 is hardwired to zero.
 module register_file (
     input  wire        clk,
     input  wire        reset,

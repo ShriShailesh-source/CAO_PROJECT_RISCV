@@ -1,3 +1,6 @@
+// Instruction Memory
+// Stores a small sample RISC-V program and returns one 32-bit instruction
+// based on the current PC address.
 module instruction_memory (
     input  wire [31:0] addr,
     output wire [31:0] instruction

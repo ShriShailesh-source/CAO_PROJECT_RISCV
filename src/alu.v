@@ -1,3 +1,5 @@
+// Arithmetic Logic Unit (ALU)
+// Supports ADD, SUB, AND, OR operations used in the EX stage.
 module alu (
     input  wire [31:0] a,
     input  wire [31:0] b,

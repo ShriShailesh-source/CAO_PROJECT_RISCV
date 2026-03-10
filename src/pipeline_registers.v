@@ -1,3 +1,5 @@
+// IF/ID Pipeline Register
+// Transfers PC and instruction from IF stage to ID stage.
 module if_id_reg (
     input  wire        clk,
     input  wire        reset,
@@ -18,6 +20,9 @@ module if_id_reg (
 endmodule
 
 module id_ex_reg (
+    // ID/EX Pipeline Register
+    // Transfers decoded operands, immediate, destination register,
+    // and control signals from ID stage to EX stage.
     input  wire        clk,
     input  wire        reset,
     input  wire [31:0] id_pc,
@@ -81,6 +86,9 @@ module id_ex_reg (
 endmodule
 
 module ex_mem_reg (
+    // EX/MEM Pipeline Register
+    // Transfers ALU result, store data, destination register,
+    // and memory/write-back control signals from EX to MEM.
     input  wire        clk,
     input  wire        reset,
     input  wire [31:0] ex_alu_result,
@@ -120,6 +128,9 @@ module ex_mem_reg (
 endmodule
 
 module mem_wb_reg (
+    // MEM/WB Pipeline Register
+    // Transfers memory/ALU results and write-back control signals
+    // from MEM stage to WB stage.
     input  wire        clk,
     input  wire        reset,
     input  wire [31:0] mem_read_data,

@@ -1,3 +1,5 @@
+// Top-level 5-stage pipelined RISC-V CPU
+// Connects IF, ID, EX, MEM, WB stages and their pipeline registers.
 module cpu_top (
     input wire clk,
     input wire reset

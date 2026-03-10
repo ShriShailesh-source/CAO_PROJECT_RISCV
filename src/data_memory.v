@@ -1,3 +1,5 @@
+// Data Memory
+// Simple word-addressed memory used by LW/SW in MEM stage.
 module data_memory (
     input  wire        clk,
     input  wire        mem_read,
