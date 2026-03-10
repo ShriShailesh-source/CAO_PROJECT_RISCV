@@ -1,6 +1,21 @@
-// Arithmetic Logic Unit (ALU)
-// Supports ADD, SUB, AND, OR operations used in the EX stage.
-// Inputs come from the register file/immediate path and output feeds MEM/WB path.
+// -----------------------------------------------------------------------------
+// Module: ALU
+// Purpose:
+//   Performs arithmetic and logic operations in the Execute (EX) stage.
+//
+// Inputs:
+//   a        : First 32-bit operand (usually rs1 value from register file)
+//   b        : Second 32-bit operand (rs2 value or immediate value)
+//   alu_ctrl : Operation select
+//              00 = ADD, 01 = SUB, 10 = AND, 11 = OR
+//
+// Outputs:
+//   result : 32-bit ALU output used by later stages
+//   zero   : High when result is 0 (useful for branch-style logic)
+//
+// Datapath connection:
+//   Register File/Immediate -> ALU (EX) -> EX/MEM pipeline register.
+// -----------------------------------------------------------------------------
 module alu (
     input  wire [31:0] a,
     input  wire [31:0] b,

@@ -1,3 +1,19 @@
+// -----------------------------------------------------------------------------
+// Module Group: Pipeline Registers
+// Purpose:
+//   These registers separate the 5 pipeline stages and pass data/control
+//   signals forward each clock cycle.
+//
+// Included modules:
+//   if_id_reg  : IF  -> ID
+//   id_ex_reg  : ID  -> EX
+//   ex_mem_reg : EX  -> MEM
+//   mem_wb_reg : MEM -> WB
+//
+// Datapath connection:
+//   Each module stores stage outputs at clock edge so the next stage can
+//   process them in parallel during the following cycle.
+// -----------------------------------------------------------------------------
 // IF/ID Pipeline Register
 // Transfers PC and instruction from IF stage to ID stage.
 module if_id_reg (

@@ -1,7 +1,24 @@
-// Register File
-// 32 general-purpose 32-bit registers with 2 read ports and 1 write port.
-// Register x0 is hardwired to zero.
-// Read ports are used in ID stage and write-back data returns in WB stage.
+// -----------------------------------------------------------------------------
+// Module: Register File
+// Purpose:
+//   Implements 32 general-purpose 32-bit registers (x0 to x31).
+//   Provides two read ports and one write port.
+//
+// Inputs:
+//   clk, reset  : Sequential update and initialization
+//   reg_write   : Write enable from WB control
+//   rs1, rs2    : Source register addresses for read ports
+//   rd          : Destination register address for write port
+//   write_data  : Data written during Write Back (WB)
+//
+// Outputs:
+//   read_data1, read_data2 : Source operand values for decode/execute path
+//
+// Datapath connection:
+//   ID stage reads rs1/rs2 values.
+//   WB stage writes result back to rd when reg_write is enabled.
+//   Register x0 is hardwired to zero by ignoring writes to rd = 0.
+// -----------------------------------------------------------------------------
 module register_file (
     input  wire        clk,
     input  wire        reset,

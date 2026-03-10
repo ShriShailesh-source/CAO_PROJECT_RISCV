@@ -1,6 +1,20 @@
-// Program Counter (PC)
-// Holds the current instruction address and updates every clock cycle.
-// Drives instruction fetch by providing the address to instruction memory.
+// -----------------------------------------------------------------------------
+// Module: Program Counter (PC)
+// Purpose:
+//   Stores the address of the current instruction.
+//   Updates each cycle with next_pc (typically PC + 4 in this project).
+//
+// Inputs:
+//   clk     : Clock signal
+//   reset   : Asynchronous reset to address 0
+//   next_pc : Next instruction address from IF logic
+//
+// Output:
+//   pc_out : Current instruction address sent to instruction memory
+//
+// Datapath connection:
+//   IF stage starts here: PC -> Instruction Memory.
+// -----------------------------------------------------------------------------
 module pc (
 	input  wire        clk,
 	input  wire        reset,

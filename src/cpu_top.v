@@ -1,6 +1,24 @@
-// Top-level 5-stage pipelined RISC-V CPU
-// Connects IF, ID, EX, MEM, WB stages and their pipeline registers.
-// Includes integrated control-unit logic in the ID decode block.
+// -----------------------------------------------------------------------------
+// Module: cpu_top
+// Purpose:
+//   Top-level integration of the simplified 5-stage pipelined RISC-V CPU.
+//   Connects all datapath blocks and pipeline registers.
+//
+// Inputs:
+//   clk, reset : Global clock and reset
+//
+// Key internal blocks:
+//   Program Counter, Instruction Memory, Register File, ALU, Data Memory,
+//   and IF/ID, ID/EX, EX/MEM, MEM/WB pipeline registers.
+//
+// Control Unit note:
+//   There is no separate control_unit.v file in this implementation.
+//   Control logic is integrated in the ID decode always block.
+//
+// Datapath connection:
+//   PC -> Instruction Memory -> Decode/Control -> Register File -> ALU
+//      -> Data Memory -> Write Back -> Register File.
+// -----------------------------------------------------------------------------
 module cpu_top (
     input wire clk,
     input wire reset

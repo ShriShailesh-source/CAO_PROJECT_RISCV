@@ -1,7 +1,18 @@
-// Instruction Memory
-// Stores a small sample RISC-V program and returns one 32-bit instruction
-// based on the current PC address.
-// Connected to IF stage and read using word-aligned PC addressing.
+// -----------------------------------------------------------------------------
+// Module: Instruction Memory
+// Purpose:
+//   Stores the sample RISC-V program and returns one instruction per fetch.
+//
+// Input:
+//   addr : 32-bit byte address from the Program Counter
+//
+// Output:
+//   instruction : 32-bit instruction at the selected word address
+//
+// Datapath connection:
+//   IF stage reads instruction using PC address.
+//   Uses word alignment via addr[31:2] because instructions are 32-bit.
+// -----------------------------------------------------------------------------
 module instruction_memory (
     input  wire [31:0] addr,
     output wire [31:0] instruction

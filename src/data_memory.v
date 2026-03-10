@@ -1,6 +1,22 @@
-// Data Memory
-// Simple word-addressed memory used by LW/SW in MEM stage.
-// Address comes from ALU result; load data moves to WB and stores use rs2 data.
+// -----------------------------------------------------------------------------
+// Module: Data Memory
+// Purpose:
+//   Provides data storage for load/store instructions.
+//
+// Inputs:
+//   clk        : Clock used for synchronous store operations
+//   mem_read   : Enables read for load instructions
+//   mem_write  : Enables write for store instructions
+//   addr       : Byte address from ALU result
+//   write_data : Data to store (usually rs2 value)
+//
+// Output:
+//   read_data : Data read from memory for load instructions
+//
+// Datapath connection:
+//   EX stage computes address -> MEM stage accesses data memory.
+//   Load result goes to MEM/WB for Write Back.
+// -----------------------------------------------------------------------------
 module data_memory (
     input  wire        clk,
     input  wire        mem_read,
