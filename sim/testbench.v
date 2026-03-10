@@ -16,9 +16,12 @@ module testbench;
         forever #5 clk = ~clk;
     end
 
-    initial begin
-        cycle = 0;
-        reset = 1'b1;
+initial begin
+    $dumpfile("dump.vcd");
+    $dumpvars(0, testbench);
+
+    cycle = 0;
+    reset = 1'b1;
 
         // Hold reset for a short duration
         #20;
