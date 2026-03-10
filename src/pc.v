@@ -1,5 +1,6 @@
 // Program Counter (PC)
 // Holds the current instruction address and updates every clock cycle.
+// Drives instruction fetch by providing the address to instruction memory.
 module pc (
 	input  wire        clk,
 	input  wire        reset,

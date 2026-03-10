@@ -1,100 +1,111 @@
 # RISC-V Processor Simulation (CAO Project)
 
-This project implements a simple 32-bit RISC-V style processor in Verilog using a classic 5-stage pipeline. The design is intended for Computer Architecture (CAO) coursework and demonstrates instruction flow from fetch to write-back.
+## Project Description
 
-## Processor Overview
+This repository contains a simple 32-bit RISC-V processor simulation written in Verilog for a Computer Architecture (CAO) university project. The processor follows a classic 5-stage pipelined datapath and supports basic arithmetic and memory instructions.
 
-The processor is organized into the following stages:
+The implementation is designed for learning and demonstration, with modular Verilog files and a straightforward testbench for simulation.
 
-1. **Instruction Fetch (IF)**
-   - Uses the Program Counter (PC) to fetch instructions from instruction memory.
-   - PC increments by 4 for each next instruction.
+## Architecture Overview
 
-2. **Instruction Decode (ID)**
-   - Decodes opcode, source/destination registers, and immediate values.
-   - Reads operands from the register file.
-   - Generates control signals for later stages.
+The processor is organized as a 5-stage pipeline:
 
-3. **Execute (EX)**
-   - Performs ALU operations (ADD, SUB, AND, OR).
-   - Computes effective address for load/store instructions.
+1. Instruction Fetch (IF)
+2. Instruction Decode (ID)
+3. Execute (EX)
+4. Memory Access (MEM)
+5. Write Back (WB)
 
-4. **Memory Access (MEM)**
-   - Accesses data memory for LOAD and STORE operations.
+Datapath flow:
 
-5. **Write Back (WB)**
-   - Writes ALU result or memory read data back to destination register.
+Program Counter -> Instruction Memory -> Control/Decode -> Register File -> ALU -> Data Memory -> Write Back
 
-## Main Components
+## Architecture
 
-- **Program Counter**: Holds current instruction address.
-- **Instruction Memory**: Stores sample instruction program.
-- **Control Unit**: Implemented in decode logic inside `cpu_top.v`.
-- **Register File**: 32 registers (`x0` to `x31`), with `x0 = 0`.
-- **ALU**: Supports ADD, SUB, AND, OR.
-- **Data Memory**: Simple array-based memory for load/store.
-- **Pipeline Registers**: IF/ID, ID/EX, EX/MEM, MEM/WB.
+### Program Counter (PC)
+Stores the current instruction address and updates to the next instruction address (PC + 4).
 
-## Folder Structure
+### Instruction Memory
+Provides a 32-bit instruction based on the current PC value.
+
+### Control Unit
+Decodes opcode/funct fields and generates control signals for ALU operation, memory access, and register write-back.
+
+### Register File
+Contains 32 general-purpose registers with two read ports and one write port; register x0 remains zero.
+
+### Arithmetic Logic Unit (ALU)
+Executes arithmetic and logic operations such as ADD, SUB, AND, and OR.
+
+### Data Memory
+Handles load/store operations for memory instructions during the MEM stage.
+
+## Modules Implemented
+
+- pc.v (Program Counter)
+- instruction_memory.v
+- register_file.v
+- alu.v
+- data_memory.v
+- pipeline_registers.v (IF/ID, ID/EX, EX/MEM, MEM/WB)
+- cpu_top.v (top-level datapath + decode/control logic)
+- sim/testbench.v
+
+Note: A separate control_unit.v file is not used; control logic is implemented inside cpu_top.v.
+
+## Repository Structure
 
 ```text
 CAO_PROJECT_RISCV
 │
-├── src        (Verilog source files)
-├── sim        (testbench / simulation files)
+├── src        (Verilog source files for processor modules)
+├── sim        (testbench and simulation files)
 ├── sim_out    (simulation outputs)
 ├── README.md
 ```
 
-Notes:
-- `src/` contains all processor modules.
-- `sim/` contains testbench files.
-- `sim_out` is generated after compilation (Icarus output artifact).
-
 ## Tools Used
 
 - Verilog HDL
-- Icarus Verilog (`iverilog`, `vvp`)
+- Icarus Verilog (iverilog, vvp)
 - ModelSim (optional)
 - Vivado Simulator (optional)
 
-## How To Compile And Run
+## Simulation Instructions
 
-From the project root directory:
+Run from repository root:
+
+```bash
+iverilog -o riscv_sim src/*.v sim/*.v
+vvp riscv_sim
+```
+
+Alternative command used in this project:
 
 ```bash
 iverilog -g2012 -o sim_out src/*.v sim/testbench.v
 vvp sim_out
 ```
 
-You should see cycle-by-cycle output for PC, selected registers, and memory values.
-
 ## Suggested Architecture Diagram
 
-Use the following block diagram in your report/slides:
+Program Counter -> Instruction Memory -> Control Unit  
+Control Unit -> Register File -> ALU -> Data Memory -> Write Back
+
+You can represent it as:
 
 ```mermaid
 flowchart LR
     PC[Program Counter] --> IMEM[Instruction Memory]
-    IMEM --> CU[Control Unit / Decode]
+    IMEM --> CU[Control Unit]
     CU --> RF[Register File]
     RF --> ALU[ALU]
-    CU --> ALU
     ALU --> DMEM[Data Memory]
-    ALU --> WB[Write Back Mux]
-    DMEM --> WB
+    DMEM --> WB[Write Back]
     WB --> RF
 ```
 
-This diagram includes the required blocks:
-- Program Counter
-- Instruction Memory
-- Control Unit
-- Register File
-- ALU
-- Data Memory
-
 ## Author
 
-**Shri Shailesh**  
+Shri Shailesh  
 VIT Vellore

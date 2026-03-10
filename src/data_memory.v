@@ -1,5 +1,6 @@
 // Data Memory
 // Simple word-addressed memory used by LW/SW in MEM stage.
+// Address comes from ALU result; load data moves to WB and stores use rs2 data.
 module data_memory (
     input  wire        clk,
     input  wire        mem_read,

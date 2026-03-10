@@ -1,5 +1,6 @@
 // Top-level 5-stage pipelined RISC-V CPU
 // Connects IF, ID, EX, MEM, WB stages and their pipeline registers.
+// Includes integrated control-unit logic in the ID decode block.
 module cpu_top (
     input wire clk,
     input wire reset
@@ -91,7 +92,8 @@ module cpu_top (
         .read_data2(id_read_data2)
     );
 
-    // Main control + ALU control decode
+    // Main control + ALU control decode (Control Unit functionality)
+    // Generates datapath control signals from opcode/funct fields.
     always @(*) begin
         // Defaults = NOP
         id_alu_ctrl   = ALU_ADD;

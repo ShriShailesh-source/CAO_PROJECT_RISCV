@@ -1,5 +1,6 @@
 // Arithmetic Logic Unit (ALU)
 // Supports ADD, SUB, AND, OR operations used in the EX stage.
+// Inputs come from the register file/immediate path and output feeds MEM/WB path.
 module alu (
     input  wire [31:0] a,
     input  wire [31:0] b,
