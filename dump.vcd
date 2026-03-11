@@ -1,5 +1,5 @@
 $date
-	Wed Mar 11 08:30:45 2026
+	Wed Mar 11 09:01:00 2026
 $end
 $version
 	Icarus Verilog
@@ -184,6 +184,30 @@ $var integer 32 4" i [31:0] $end
 $upscope $end
 $upscope $end
 $upscope $end
+$scope module testbench $end
+$var wire 32 5" x1 [31:0] $end
+$upscope $end
+$scope module testbench $end
+$var wire 32 6" x2 [31:0] $end
+$upscope $end
+$scope module testbench $end
+$var wire 32 7" x3 [31:0] $end
+$upscope $end
+$scope module testbench $end
+$var wire 32 8" x4 [31:0] $end
+$upscope $end
+$scope module testbench $end
+$var wire 32 9" x5 [31:0] $end
+$upscope $end
+$scope module testbench $end
+$var wire 32 :" x6 [31:0] $end
+$upscope $end
+$scope module testbench $end
+$var wire 32 ;" x7 [31:0] $end
+$upscope $end
+$scope module testbench $end
+$var wire 32 <" x8 [31:0] $end
+$upscope $end
 $enddefinitions $end
 $comment Show the parameter values. $end
 $dumpall
@@ -198,6 +222,14 @@ b0 P
 $end
 #0
 $dumpvars
+b0 <"
+b0 ;"
+b0 :"
+b0 9"
+b0 8"
+b0 7"
+b0 6"
+b0 5"
 b100000 4"
 b0 3"
 b0 2"
@@ -497,6 +529,7 @@ b0 j
 b0 &"
 b1100 G
 b1100 w
+b101 5"
 b10000 9
 b10000 t
 b10000 ""
@@ -545,6 +578,7 @@ b1000001000000110110011 !"
 b10100 9
 b10100 t
 b10100 ""
+b1010 6"
 b10000 G
 b10000 w
 b0 &
@@ -756,6 +790,7 @@ b101000 -"
 b100100 9
 b100100 t
 b100100 ""
+b1111 7"
 b100000 G
 b100000 w
 b0 .
@@ -801,6 +836,7 @@ b0 (
 b0 )"
 b100100 G
 b100100 w
+b101 8"
 b1100000010000000100011 ;
 b1100000010000000100011 !"
 b101000 9
@@ -1146,6 +1182,7 @@ b0 ]
 b0 y
 b1000100 G
 b1000100 w
+b1111 9"
 b1001000 9
 b1001000 t
 b1001000 ""
@@ -1225,6 +1262,7 @@ b0 (
 b0 )"
 b1001100 G
 b1001100 w
+b1111 ;"
 b10000101000010000110011 ;
 b10000101000010000110011 !"
 b1010000 9
@@ -1382,6 +1420,7 @@ b0 (
 b0 )"
 b1011100 G
 b1011100 w
+b10100 <"
 b1100000 9
 b1100000 t
 b1100000 ""
