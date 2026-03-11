@@ -16,12 +16,24 @@ module testbench;
         forever #5 clk = ~clk;
     end
 
-initial begin
-    $dumpfile("dump.vcd");
-    $dumpvars(0, uut);
+    initial begin
+        $dumpfile("dump.vcd");
 
-    cycle = 0;
-    reset = 1'b1;
+        // Dump top-level CPU and all submodules recursively
+        $dumpvars(0, uut);
+
+        // Explicitly dump registers x1–x8 (array elements)
+        $dumpvars(0, uut.u_regfile.regs[1]);
+        $dumpvars(0, uut.u_regfile.regs[2]);
+        $dumpvars(0, uut.u_regfile.regs[3]);
+        $dumpvars(0, uut.u_regfile.regs[4]);
+        $dumpvars(0, uut.u_regfile.regs[5]);
+        $dumpvars(0, uut.u_regfile.regs[6]);
+        $dumpvars(0, uut.u_regfile.regs[7]);
+        $dumpvars(0, uut.u_regfile.regs[8]);
+
+        cycle = 0;
+        reset = 1'b1;
 
         // Hold reset for a short duration
         #20;
