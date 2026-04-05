@@ -87,6 +87,21 @@ Folder purpose:
 - ModelSim (optional)
 - Vivado Simulator (optional)
 
+## Dependency Check
+
+Before running simulation, verify required tools are installed:
+
+```powershell
+.\check_tools.ps1
+```
+
+This checks for:
+- `iverilog`
+- `vvp`
+- `gtkwave`
+
+If any required tool is missing, the script exits with an error code.
+
 ## Simulation Instructions
 
 Run from repository root:
